@@ -105,13 +105,8 @@ cep = input("Type the client's CEP (number only): ")
 cep_input = wait.until(EC.element_to_be_clickable
                        ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[4]/div[1]/div/input'))).send_keys(cep)
 
-vehicle_model_dropdown = wait.until(EC.element_to_be_clickable
-                                    ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[7]/div/div/div/div[1]'))).click()
-model_select = wait.until(EC.element_to_be_clickable
-                          ((By.XPATH,"//input[@type='checkbox']"))).click()
-
 description_input = wait.until(EC.element_to_be_clickable
-                               ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[8]/div[2]/textarea'))).send_keys("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+                               ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[7]/div[2]/textarea'))).send_keys("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
 
 time.sleep(3)
 
@@ -121,6 +116,32 @@ adressNum_input = wait.until(EC.element_to_be_clickable
 
 next_btn1 = wait.until(EC.element_to_be_clickable
                        ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[2]/button'))).click()
+
+option_type = 0
+type = input("Type the vehicle type ('Carros' or 'Caminhões leves'): ")
+
+if type == "Caminhões leves" or type == "caminhoes leves" or "caminhoes" or "Caminhoes":
+    option_type = 1
+
+type_dropdown = wait.until(EC.element_to_be_clickable
+                           ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div'))).click()
+
+type_select = wait.until(EC.element_to_be_clickable
+                         ((By.XPATH, f"//div[@id='react-select-2-option-{option_type}']"))).click()
+
+modelInput = input("Type the vehicle model ('Toyota Corolla LE' or 'Ford Mustang GT')")
+adressNum_input = wait.until(EC.element_to_be_clickable
+                             ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[2]/div/input'))).send_keys(modelInput)
+
+time.sleep(3)
+
+first_option = wait.until(EC.element_to_be_clickable
+                           ((By.XPATH, '/html/body/div[1]/div/div[1]/form/table/tbody/tr[1]/td[1]/div/div/div'))).click()
+
+next_btn2 = wait.until(EC.element_to_be_clickable
+                           ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[4]/button[2]'))).click()
+
+time.sleep(1.2)
 
 time.sleep(2)
 
