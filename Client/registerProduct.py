@@ -53,8 +53,8 @@ def gera_e_valida_cpf():
             return cpf
 
 productName = input("Type the product's name: ")
-image_path = r'C:\Users\josef\Desktop\AfterLifeDeath\SINP\autoSINP-main\Files\Random\Amortecedor.png'
-document_path = r'C:\Users\josef\Desktop\AfterLifeDeath\SINP\autoSINP-main\Files\Random\SINP_-_Master_Web.pdf'
+image_path = r''
+document_path = r''
 productPrice = input("Type the product's price (numbers only): ")
 productDescription = input("Type the product's description: ")
 

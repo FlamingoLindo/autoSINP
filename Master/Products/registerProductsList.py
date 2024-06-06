@@ -30,7 +30,7 @@ def upload_image(image_path):
     pyautogui.press('enter')
     time.sleep(1)
 
-# List of image paths to be uploaded
+"""# List of image paths to be uploaded DOES NOT WORK
 images = [
     r"C:\Users\josef\Desktop\After life, death\SINP\autoSINP-main\Files\Random\capacitor.webp",
     r"C:\Users\josef\Desktop\After life, death\SINP\autoSINP-main\Files\Random\Amortecedor.png",
@@ -41,7 +41,7 @@ images = [
     r"C:\Users\josef\Desktop\After life, death\SINP\autoSINP-main\Files\Random\bateria.webp",
     r"C:\Users\josef\Desktop\After life, death\SINP\autoSINP-main\Files\Random\vela.png",
     r"C:\Users\josef\Desktop\After life, death\SINP\autoSINP-main\Files\Random\Cheirinho.png"
-]
+]"""
 
 # Load the Excel file
 df = pd.read_excel('./Files/Excel/Products.xlsx')
