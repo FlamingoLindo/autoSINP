@@ -117,15 +117,15 @@ adressNum_input = wait.until(EC.element_to_be_clickable
 next_btn1 = wait.until(EC.element_to_be_clickable
                        ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[2]/button'))).click()
 
-option_type = 0
-type = input("Type the vehicle type ('Carros' or 'Caminhões leves'): ")
+option_type = 1
+type = input("Type the vehicle type ('carros' or 'caminhoes'): ")
 
-if type == "Caminhões leves" or type == "caminhoes leves" or "caminhoes" or "Caminhoes":
-    option_type = 1
+if type == "carros":
+    option_type = 0
 
 type_dropdown = wait.until(EC.element_to_be_clickable
                            ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div'))).click()
-
+print(option_type)
 type_select = wait.until(EC.element_to_be_clickable
                          ((By.XPATH, f"//div[@id='react-select-2-option-{option_type}']"))).click()
 
