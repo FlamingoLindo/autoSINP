@@ -52,10 +52,7 @@ def gera_e_valida_cpf():
         if valida_cpf(cpf):
             return cpf
 
-name = input("Type the client's name: ")
-phone = input("Type the client's phone number: ")
-email = input("Type the client's email: ")
-cep = input("Type the client's CEP (number only): ")
+print("https://www.4devs.com.br/gerador_de_pessoas")
 
 # Path to your ChromeDriver
 driver_path = './chromedriver.exe'
@@ -70,55 +67,60 @@ wait = WebDriverWait(driver, 5)
 time.sleep(2)
 
 # Wait for email input to be clickable
-email_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[2]/form/div[1]/div[1]/div/input')))
-email_input.send_keys(os.getenv("CLIENT_LOGIN"))
+email_input = wait.until(EC.element_to_be_clickable
+                         ((By.XPATH, '/html/body/div[1]/div[2]/form/div[1]/div[1]/div/input'))).send_keys(os.getenv("CLIENT_LOGIN"))
 
 # Wait for password input to be clickable
-password_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[2]/form/div[1]/div[2]/div/input')))
-password_input.send_keys(os.getenv("CLIENT_PASSWORD"))
+password_input = wait.until(EC.element_to_be_clickable
+                            ((By.XPATH, '/html/body/div[1]/div[2]/form/div[1]/div[2]/div/input'))).send_keys(os.getenv("CLIENT_PASSWORD"))
 
 # Clicks at the login button
-login_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[2]/form/button')))
-login_btn.click()
+login_btn = wait.until(EC.element_to_be_clickable
+                       ((By.XPATH, '/html/body/div[1]/div[2]/form/button'))).click()
 
 time.sleep(1)
 
 # Opens the budget form
-new_budget_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[2]/div[1]/div/button')))
-new_budget_btn.click()
+new_budget_btn = wait.until(EC.element_to_be_clickable
+                            ((By.XPATH, '/html/body/div[1]/div[2]/div[1]/div/button'))).click()
 
 # Inputs budget's info
-name_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[1]/div/div/input')))
-name_input.send_keys(name)
+name = input("Type the client's name: ")
+name_input = wait.until(EC.element_to_be_clickable
+                        ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[1]/div/div/input'))).send_keys(name)
 
-phone_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[2]/div[1]/div/input')))
-phone_input.send_keys(phone)
+phone = input("Type the client's phone number: ")
+phone_input = wait.until(EC.element_to_be_clickable
+                         ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[2]/div[1]/div/input'))).send_keys(phone)
 
-cpf_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[2]/div[2]/div/input')))
-#cpf = gera_e_valida_cpf()
-cpf_input.send_keys("70.677.479/0001-80")
+cpf = gera_e_valida_cpf()
+cpf_input = wait.until(EC.element_to_be_clickable
+                       ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[2]/div[2]/div/input'))).send_keys(cpf)
 
-email_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[3]/div/input')))
-email_input.send_keys(email)
+email = input("Type the client's email: ")
+email_input = wait.until(EC.element_to_be_clickable
+                         ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[3]/div/input'))).send_keys(email)
 
-cep_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[4]/div[1]/div/input')))
-cep_input.send_keys(cep)
+cep = input("Type the client's CEP (number only): ")
+cep_input = wait.until(EC.element_to_be_clickable
+                       ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[4]/div[1]/div/input'))).send_keys(cep)
 
-vehicle_model_dropdown = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[7]/div/div/div/div[1]')))
-vehicle_model_dropdown.click()
-model_select = wait.until(EC.element_to_be_clickable((By.XPATH,"//input[@type='checkbox']"))) 
-model_select.click()
+vehicle_model_dropdown = wait.until(EC.element_to_be_clickable
+                                    ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[7]/div/div/div/div[1]'))).click()
+model_select = wait.until(EC.element_to_be_clickable
+                          ((By.XPATH,"//input[@type='checkbox']"))).click()
 
-description_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[8]/div[2]/textarea')))
-description_input.send_keys("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+description_input = wait.until(EC.element_to_be_clickable
+                               ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[8]/div[2]/textarea'))).send_keys("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
 
 time.sleep(3)
 
-adressNum_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[4]/div[2]/div/input')))
-adressNum_input.send_keys("1")
+addreNum = random.randint(1, 9999)
+adressNum_input = wait.until(EC.element_to_be_clickable
+                             ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[4]/div[2]/div/input'))).send_keys(addreNum)
 
-next_btn1 = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[2]/button'))) 
-next_btn1.click()
+next_btn1 = wait.until(EC.element_to_be_clickable
+                       ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[2]/button'))).click()
 
 time.sleep(2)
 
@@ -139,8 +141,8 @@ for index, item in enumerate(all_items):
     except Exception as e:
         print(f"Could not click item {index+1}: {e}")
 
-next_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[3]/button[2]'))) 
-next_btn.click()
+next_btn = wait.until(EC.element_to_be_clickable
+                      ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[3]/button[2]'))).click()
 
 time.sleep(3)
 
@@ -157,14 +159,14 @@ for index, service in enumerate(all_services):
     except Exception as e:
         print(f"Could not click service {index + 1}: {e}")
 
-next_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[3]/button[2]'))) 
-next_btn.click()
+next_btn = wait.until(EC.element_to_be_clickable
+                      ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[3]/button[2]'))).click()
 
-after_disc_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[4]/button[2]'))) 
-after_disc_btn.click()
+after_disc_btn = wait.until(EC.element_to_be_clickable
+                            ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[4]/button[2]'))).click()
 
-submit_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[2]/button[2]'))) 
-submit_btn.click()
+submit_btn = wait.until(EC.element_to_be_clickable
+                        ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[2]/button[2]'))).click()
 
 time.sleep(10000)
 # Close the browser

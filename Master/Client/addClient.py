@@ -12,15 +12,7 @@ from dotenv import load_dotenv
 import os
 load_dotenv()
 
-name = input("Type the client's name: ")
-email = input("Type the client's email: ")
-phone = input("Type the client's phone number (numbers only): ")
-cep = input("Type the client's CEP (numbers only): ")
-numero = input("Type the client's adress number: ")
-complemento = input("Type the client's adress coplement: ")
 senha = 12345678
-parcela = input("Type the number of installments (1-12): ")
-data = input("Type the client's contract date (numbers only): ")
 
 document_path = r"C:\Users\josef\Desktop\AfterLifeDeath\SINP\autoSINP-main\Files\Random\1.pdf"
 
@@ -58,59 +50,66 @@ driver.get(os.getenv('SINP_URL'))
 wait = WebDriverWait(driver, 5)
 
 # Wait for email input to be clickable
-email_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[2]/form/div/div[1]/div/input')))
-email_input.send_keys(os.getenv('SINP_LOGIN'))
+email_input = wait.until(EC.element_to_be_clickable
+                         ((By.XPATH, '/html/body/div[1]/div[2]/form/div/div[1]/div/input'))).send_keys(os.getenv('SINP_LOGIN'))
+
 
 # Wait for password input to be clickable
-password_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[2]/form/div/div[2]/div/input')))
-password_input.send_keys(os.getenv('SINP_PASSWORD'))
+password_input = wait.until(EC.element_to_be_clickable
+                            ((By.XPATH, '/html/body/div[1]/div[2]/form/div/div[2]/div/input'))).send_keys(os.getenv('SINP_PASSWORD'))
 
 # Click on login button
-login_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[2]/form/button')))
-login_btn.click()
+login_btn = wait.until(EC.element_to_be_clickable
+                       ((By.XPATH, '/html/body/div[1]/div[2]/form/button'))).click()
 
 time.sleep(1)
 
 # Clicks at the register a client page
-register_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[2]/div[1]/div/button')))
-register_btn.click()
+register_btn = wait.until(EC.element_to_be_clickable
+                          ((By.XPATH, '/html/body/div[1]/div[2]/div[1]/div/button'))).click()
 
 # Inputs name
-name_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[1]/div/div/input')))
-name_input.send_keys(name)
-    
+name = input("Type the client's name: ")
+name_input = wait.until(EC.element_to_be_clickable
+                        ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[1]/div/div/input'))).send_keys(name)
+
 # Click at the CPF radial button
-cpf_radio = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="cpf"]')))
-cpf_radio.click()
+cpf_radio = wait.until(EC.element_to_be_clickable
+                       ((By.XPATH, '//*[@id="cpf"]'))).click()
 
 # Inputs random CPF (Might not be valid)
-cpf_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[2]/div[2]/div/input')))
+cpf_input = wait.until(EC.element_to_be_clickable
+                       ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[2]/div[2]/div/input')))
 cpf = gera_cpf()
 cpf_input.send_keys(cpf)
 
 # Inputs email
-email_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[3]/div[1]/div/input')))
-email_input.send_keys(email)
+email = input("Type the client's email: ")
+email_input = wait.until(EC.element_to_be_clickable
+                         ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[3]/div[1]/div/input'))).send_keys(email)
 
 # Inputs phone number
-phone_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[3]/div[2]/div/input')))
-phone_input.send_keys(phone)
+phone = input("Type the client's phone number (numbers only): ")
+phone_input = wait.until(EC.element_to_be_clickable
+                         ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[3]/div[2]/div/input'))).send_keys(phone)
 
 # Inputs CEP
-cep_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[4]/div/div/input')))
-cep_input.send_keys(cep)
+cep = input("Type the client's CEP (numbers only): ")
+cep_input = wait.until(EC.element_to_be_clickable
+                       ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[4]/div/div/input'))).send_keys(cep)
 
 # Inputs complement
-complement_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[6]/div[2]/div/input')))
-complement_input.send_keys(complemento)
+complemento = input("Type the client's adress coplement: ")
+complement_input = wait.until(EC.element_to_be_clickable
+                              ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[6]/div[2]/div/input'))).send_keys(complemento)
 
 # Inputs password
-password_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[9]/div/div/input')))
-password_input.send_keys(senha)
+password_input = wait.until(EC.element_to_be_clickable
+                            ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[9]/div/div/input'))).send_keys(senha)
 
 # Inputs password confirmation
-conf_password_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[10]/div/div/input')))
-conf_password_input.send_keys(senha)
+conf_password_input = wait.until(EC.element_to_be_clickable
+                                 ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[10]/div/div/input'))).send_keys(senha)
 
 # Inputs contract file
 pyautogui.press('tab')
@@ -129,14 +128,16 @@ installment_str = str(installment)
 installment_input.send_keys(installment_str)
 
 # Inputs the installment quantity on the drop-down
+parcela = input("Type the number of installments (1-12): ")
 pyautogui.press('tab')
 pyautogui.write(parcela)
-qnt_option = wait.until(EC.element_to_be_clickable((By.XPATH, f"//div[contains(text(), '{parcela}')]")))
-qnt_option.click()
-    
+qnt_option = wait.until(EC.element_to_be_clickable
+                        ((By.XPATH, f"//div[contains(text(), '{parcela}')]"))).click()
+
 # Inputs the installment date
-date_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[15]/div[1]/div/input')))
-date_input.send_keys(data)
+data = input("Type the client's contract date (numbers only): ")
+date_input = wait.until(EC.element_to_be_clickable
+                        ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[15]/div[1]/div/input'))).send_keys(data)
 
 # Inputs random rimender
 reminder_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[15]/div[2]/div/input')))
@@ -145,16 +146,17 @@ reminder_str = str(reminder)
 reminder_input.send_keys(reminder_str)
 
 # Inputs number
-adressNum_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[6]/div[1]/div/input')))
-adressNum_input.send_keys(numero)
+numero = input("Type the client's adress number: ")
+adressNum_input = wait.until(EC.element_to_be_clickable
+                             ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[6]/div[1]/div/input'))).send_keys(numero)
 
 # Clicks at the save button
-done_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[2]/button')))
-done_btn.click() 
+done_btn = wait.until(EC.element_to_be_clickable
+                      ((By.XPATH, '/html/body/div[1]/div/div/form/div[2]/button'))).click() 
 
 # Clicks at the close button
-close_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/form/button')))
-close_btn.click() 
+close_btn = wait.until(EC.element_to_be_clickable
+                       ((By.XPATH, '/html/body/div[1]/form/button'))).click()
 
 time.sleep(101010)
 

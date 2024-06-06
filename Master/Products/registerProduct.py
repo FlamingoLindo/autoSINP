@@ -14,10 +14,6 @@ from pynput.keyboard import Key, Controller
 
 load_dotenv()
 
-name = input("Type the product's name: ")
-description = input("Type the product's description: ")
-price = input("Enter the product's price (numbers only): ")
-
 image_path =  r"C:\Users\josef\Desktop\AfterLifeDeath\SINP\autoSINP-main\Files\Random\capacitor.webp"
 document_path = r"C:\Users\josef\Desktop\AfterLifeDeath\SINP\autoSINP-main\Files\Random\1.pdf"
 
@@ -33,28 +29,28 @@ driver.get(os.getenv('SINP_URL'))
 wait = WebDriverWait(driver, 10)
 
 # Wait for email input to be clickable
-email_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[2]/form/div/div[1]/div/input')))
-email_input.send_keys(os.getenv('SINP_LOGIN'))
+email_input = wait.until(EC.element_to_be_clickable
+                         ((By.XPATH, '/html/body/div[1]/div[2]/form/div/div[1]/div/input'))).send_keys(os.getenv('SINP_LOGIN'))
 
 # Wait for password input to be clickable
-password_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[2]/form/div/div[2]/div/input')))
-password_input.send_keys(os.getenv('SINP_PASSWORD'))
+password_input = wait.until(EC.element_to_be_clickable
+                            ((By.XPATH, '/html/body/div[1]/div[2]/form/div/div[2]/div/input'))).send_keys(os.getenv('SINP_PASSWORD'))
 
 # Click on login button
-login_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[2]/form/button')))
-login_btn.click()
+login_btn = wait.until(EC.element_to_be_clickable
+                       ((By.XPATH, '/html/body/div[1]/div[2]/form/button'))).click()
 
 # Click on the products page
-products_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[1]/div[2]/a[4]')))
-products_btn.click()
+products_btn = wait.until(EC.element_to_be_clickable
+                          ((By.XPATH, '/html/body/div[1]/div[1]/div[2]/a[4]'))).click()
 
 # Open the register a client page
-register_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[2]/div[1]/div/button')))
-register_btn.click()
+register_btn = wait.until(EC.element_to_be_clickable
+                          ((By.XPATH, '/html/body/div[1]/div[2]/div[1]/div/button'))).click()
 
 # Inputs the product's image
-image_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[1]/div[1]/div')))
-image_btn.click()
+image_btn = wait.until(EC.element_to_be_clickable
+                       ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[1]/div[1]/div'))).click()
 pyautogui.press('tab')
 pyautogui.press('enter')
 time.sleep(1.5)
@@ -72,38 +68,43 @@ time.sleep(1.5)
 pyautogui.press('enter')
 
 # Inputs the product's name
-name_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[3]/div/div/input')))
-name_input.send_keys(name)
+name = input("Type the product's name: ")
+name_input = wait.until(EC.element_to_be_clickable
+                        ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[3]/div/div/input'))).send_keys(name)
 
 # Inputs the product's model
-pyautogui.press('tab')
-pyautogui.write('a')
-model_select = wait.until(EC.element_to_be_clickable((By.XPATH,"//input[@type='checkbox']"))) 
-model_select.click()
+option_model = random.randint(1, 2)
+model_dropdown = wait.until(EC.element_to_be_clickable
+                            ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[4]/div/div/div/div/div[1]/div[2]'))).click() 
+model_select = wait.until(EC.element_to_be_clickable
+                          ((By.XPATH, f"//div[@id='react-select-2-listbox']/div[{option_model}]/input"))).click()
 
 # Inputs the product's type
-pyautogui.press('tab')
-pyautogui.write('a')
-type_select = wait.until(EC.element_to_be_clickable((By.XPATH,"//input[@type='checkbox']"))) 
-type_select.click()
+option_type = random.randint(0, 1)
+model_dropdown = wait.until(EC.element_to_be_clickable
+                            ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[5]/div/div/div/div/div[1]/div[2]'))).click() 
+type_option = wait.until(EC.element_to_be_clickable
+                         ((By.XPATH, f"//div[@id='react-select-3-listbox']/div[{option_model}]/input"))).click()
 
 # Inputs product's price
-price_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[6]/div/div/input')))
-price_input.click()
+price = input("Enter the product's price (numbers only): ")
+price_input = wait.until(EC.element_to_be_clickable
+                         ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[6]/div/div/input'))).click()
 price_input.send_keys(price)
 
 # Inputs the product's description
-description_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[7]/div/div[2]/textarea')))
-description_input.click()
+description = input("Type the product's description: ")
+description_input = wait.until(EC.element_to_be_clickable
+                               ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[7]/div/div[2]/textarea'))).click()
 description_input.send_keys(description)
 
 # Clicks the save button
-done_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[2]/button')))
-done_btn.click()
+done_btn = wait.until(EC.element_to_be_clickable
+                      ((By.XPATH, '/html/body/div[1]/div/div/form/div[2]/button'))).click()
 
 # Clicks the close button
-close_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/form/button')))
-close_btn.click()
+close_btn = wait.until(EC.element_to_be_clickable
+                       ((By.XPATH, '/html/body/div[1]/form/button'))).click()
 
 
 time.sleep(1010101)

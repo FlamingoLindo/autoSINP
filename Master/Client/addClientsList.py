@@ -53,16 +53,17 @@ driver.get(os.getenv('SINP_URL'))
 wait = WebDriverWait(driver, 5)
 
 # Wait for email input to be clickable
-email_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[2]/form/div/div[1]/div/input')))
-email_input.send_keys(os.getenv('SINP_LOGIN'))
+email_input = wait.until(EC.element_to_be_clickable
+                         ((By.XPATH, '/html/body/div[1]/div[2]/form/div/div[1]/div/input'))).send_keys(os.getenv('SINP_LOGIN'))
 
 # Wait for password input to be clickable
-password_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[2]/form/div/div[2]/div/input')))
-password_input.send_keys(os.getenv('SINP_PASSWORD'))
+password_input = wait.until(EC.element_to_be_clickable
+                            ((By.XPATH, '/html/body/div[1]/div[2]/form/div/div[2]/div/input'))).send_keys(os.getenv('SINP_PASSWORD'))
 
 # Click on login button
-login_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[2]/form/button')))
-login_btn.click()
+login_btn = wait.until(EC.element_to_be_clickable
+                       ((By.XPATH, '/html/body/div[1]/div[2]/form/button'))).send_keys(os.getenv('SINP_PASSWORD'))
+
 
 # Initialize the notification ID
 notification_id = 1
@@ -72,66 +73,66 @@ for index, row in df.iterrows():
     print(index)
     
     # Clicks at the register a client page
-    register_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[2]/div[1]/div/button')))
-    register_btn.click()
-
-    # Inputs name
-    name_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[1]/div/div/input')))
-    name_input.send_keys(row['nomeCompleto'])
+    register_btn = wait.until(EC.element_to_be_clickable
+                              ((By.XPATH, '/html/body/div[1]/div[2]/div[1]/div/button'))).click()
     
-
+    # Inputs name
+    name_input = wait.until(EC.element_to_be_clickable
+                            ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[1]/div/div/input'))).send_keys(row['nomeCompleto'])
+    
     # Click at the CPF radial button
-    cpf_radio = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="cpf"]')))
-    cpf_radio.click()
+    cpf_radio = wait.until(EC.element_to_be_clickable
+                           ((By.XPATH, '//*[@id="cpf"]'))).click()
 
     # Inputs random CPF (Might not be valid)
-    cpf_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[2]/div[2]/div/input')))
+    cpf_input = wait.until(EC.element_to_be_clickable
+                           ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[2]/div[2]/div/input')))
     cpf = gera_cpf()
     cpf_input.send_keys(cpf)
 
     # Inputs email
-    email_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[3]/div[1]/div/input')))
-    email_input.send_keys(row['email'])
+    email_input = wait.until(EC.element_to_be_clickable
+                             ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[3]/div[1]/div/input'))).send_keys(row['email'])
 
     # Inputs phone number
-    phone_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[3]/div[2]/div/input')))
-    phone_input.send_keys(row['telefone'])
+    phone_input = wait.until(EC.element_to_be_clickable
+                             ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[3]/div[2]/div/input'))).send_keys(row['telefone'])
 
     # Inputs CEP
-    cep_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[4]/div/div/input')))
-    cep_input.send_keys(row['cep'])
+    cep_input = wait.until(EC.element_to_be_clickable
+                           ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[4]/div/div/input'))).send_keys(row['cep'])
 
     # Inputs street
-    street_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[5]/div/div/input')))
-    street_input.send_keys(row['rua'])
-
+    street_input = wait.until(EC.element_to_be_clickable
+                              ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[5]/div/div/input'))).send_keys(row['rua'])
+    
     # Inputs number
-    street_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[6]/div[1]/div/input')))
-    street_input.send_keys(row['numero'])
-
+    street_input = wait.until(EC.element_to_be_clickable
+                              ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[6]/div[1]/div/input'))).send_keys(row['numero'])
+    
     # Inputs complement
-    complement_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[6]/div[2]/div/input')))
-    complement_input.send_keys(row['complemento'])
+    complement_input = wait.until(EC.element_to_be_clickable
+                                  ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[6]/div[2]/div/input'))).send_keys(row['complemento'])
 
     # Inputs neighborhood
-    neighborhood_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[7]/div[1]/div/input')))
-    neighborhood_input.send_keys(row['bairro'])
+    neighborhood_input = wait.until(EC.element_to_be_clickable
+                                    ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[7]/div[1]/div/input'))).send_keys(row['bairro'])
 
     # Inputs city
-    city_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[7]/div[2]/div/input')))
-    city_input.send_keys(row['cidade'])
+    city_input = wait.until(EC.element_to_be_clickable
+                            ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[7]/div[2]/div/input'))).send_keys(row['cidade'])
 
     # Inputs estate
-    estate_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[8]/div/div/input')))
-    estate_input.send_keys(row['estado'])
+    estate_input = wait.until(EC.element_to_be_clickable
+                              ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[8]/div/div/input'))).send_keys(row['estado'])
 
     # Inputs password
-    password_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[9]/div/div/input')))
-    password_input.send_keys(row['senha'])
+    password_input = wait.until(EC.element_to_be_clickable
+                                ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[9]/div/div/input'))).send_keys(row['senha'])
 
     # Inputs password confirmation
-    conf_password_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[10]/div/div/input')))
-    conf_password_input.send_keys(row['confSenha'])
+    conf_password_input = wait.until(EC.element_to_be_clickable
+                                     ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[10]/div/div/input'))).send_keys(row['confSenha'])
 
     # Inputs contract file
     #file_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[12]/div/div/button/svg')))
@@ -140,42 +141,44 @@ for index, row in df.iterrows():
     time.sleep(5)
     
     # Inputs random installment value
-    installment_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[13]/div/div/input')))
+    installment_input = wait.until(EC.element_to_be_clickable
+                                   ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[13]/div/div/input')))
     installment = gera_parcela()
     installment_str = str(installment)
     # Send the installment value to the input field
     installment_input.send_keys(installment_str)
 
     # Inputs the installment quantity on the drop-down
-    installment_qnt_dropdown = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[14]/div[1]/div/div/div')))
-    installment_qnt_dropdown.click()
-    qnt_option = wait.until(EC.element_to_be_clickable((By.XPATH, f"//div[contains(text(), '{row['parcela']}')]")))
-    qnt_option.click()
-    
+    installment_qnt_dropdown = wait.until(EC.element_to_be_clickable
+                                          ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[14]/div[1]/div/div/div'))).click()
+    qnt_option = wait.until(EC.element_to_be_clickable
+                            ((By.XPATH, f"//div[contains(text(), '{row['parcela']}')]"))).click()
 
     # Inputs the installment date
     date_str = row['dataParcela'].strftime('%d/%m/%Y')
-    date_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[15]/div[1]/div/input')))
+    date_input = wait.until(EC.element_to_be_clickable
+                            ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[15]/div[1]/div/input')))
     date_input.send_keys(date_str)
 
     # Inputs random rimender
-    reminder_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[15]/div[2]/div/input')))
+    reminder_input = wait.until(EC.element_to_be_clickable
+                                ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[15]/div[2]/div/input')))
     reminder = gera_aviso()
     reminder_str = str(reminder)
     reminder_input.send_keys(reminder_str)
 
     # Clicks at the save button
-    done_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[2]/button')))
-    done_btn.click() 
+    done_btn = wait.until(EC.element_to_be_clickable
+                          ((By.XPATH, '/html/body/div[1]/div/div/form/div[2]/button'))).click()
 
     # Clicks at the close button
-    close_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/form/button')))
-    close_btn.click() 
+    close_btn = wait.until(EC.element_to_be_clickable
+                           ((By.XPATH, '/html/body/div[1]/form/button'))).click()
     
     # Close the button with dynamically changing ID
     close_notify_btn_xpath = f'//*[@id="{notification_id}"]'
-    close_notify_btn = wait.until(EC.element_to_be_clickable((By.XPATH, close_notify_btn_xpath)))
-    close_notify_btn.click()
+    close_notify_btn = wait.until(EC.element_to_be_clickable
+                                  ((By.XPATH, close_notify_btn_xpath))).click()
 
     # Increment the ID for the next iteration
     notification_id += 1

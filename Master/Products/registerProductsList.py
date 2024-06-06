@@ -59,22 +59,20 @@ driver.get(os.getenv('SINP_URL'))
 wait = WebDriverWait(driver, 10)
 
 # Wait for email input to be clickable
-email_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[2]/form/div/div[1]/div/input')))
-email_input.send_keys(os.getenv('SINP_LOGIN'))
+email_input = wait.until(EC.element_to_be_clickable
+                         ((By.XPATH, '/html/body/div[1]/div[2]/form/div/div[1]/div/input'))).send_keys(os.getenv('SINP_LOGIN'))
 
 # Wait for password input to be clickable
-password_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[2]/form/div/div[2]/div/input')))
-password_input.send_keys(os.getenv('SINP_PASSWORD'))
+password_input = wait.until(EC.element_to_be_clickable
+                            ((By.XPATH, '/html/body/div[1]/div[2]/form/div/div[2]/div/input'))).send_keys(os.getenv('SINP_PASSWORD'))
 
 # Click on login button
-login_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[2]/form/button')))
-login_btn.click()
+login_btn = wait.until(EC.element_to_be_clickable
+                       ((By.XPATH, '/html/body/div[1]/div[2]/form/button'))).click()
 
 # Click on the products page
-products_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[1]/div[2]/a[4]')))
-products_btn.click()
-
-keyboard = Controller()
+products_btn = wait.until(EC.element_to_be_clickable
+                          ((By.XPATH, '/html/body/div[1]/div[1]/div[2]/a[4]'))).click()
 
 # Initialize the notification ID
 notification_id = 1
@@ -82,8 +80,8 @@ notification_id = 1
 # Loop through each image and upload
 for image in images:
     # Open the register a client page
-    register_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[2]/div[1]/div/button')))
-    register_btn.click()
+    register_btn = wait.until(EC.element_to_be_clickable
+                              ((By.XPATH, '/html/body/div[1]/div[2]/div[1]/div/button'))).click()
     
     # Show what image it's currently uploading (Just for debugging)
     print(f"Uploading image {image}")
@@ -101,52 +99,52 @@ for image in images:
         time.sleep(1)
 
         # Inputs the product's name
-        name_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[3]/div/div/input')))
-        name_input.send_keys(row['name'])
+        name_input = wait.until(EC.element_to_be_clickable
+                                ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[3]/div/div/input'))).send_keys(row['name'])
 
         # Inputs the product's model
-        model_dropdown = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[5]/div/div/div/div/div[1]/div[2]')))
-        model_dropdown.click()
-        model_select = wait.until(EC.element_to_be_clickable((By.XPATH,"//input[@type='checkbox']"))) 
-        model_select.click()
+        model_dropdown = wait.until(EC.element_to_be_clickable
+                                    ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[5]/div/div/div/div/div[1]/div[2]'))).click()
+        model_select = wait.until(EC.element_to_be_clickable
+                                  ((By.XPATH,"//input[@type='checkbox']"))).click()
 
         # Inputs the product's type
-        type_dropdown = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[6]/div/div/div/div/div[1]/div[2]')))
-        type_dropdown.click()  
-        type_select = wait.until(EC.element_to_be_clickable((By.XPATH,"//input[@type='checkbox']"))) 
-        type_select.click()
+        type_dropdown = wait.until(EC.element_to_be_clickable
+                                   ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[6]/div/div/div/div/div[1]/div[2]'))).click()
+        type_select = wait.until(EC.element_to_be_clickable
+                                 ((By.XPATH,"//input[@type='checkbox']"))).click() 
 
         # Inputs product's price
-        price_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[7]/div/div/input')))
-        price_input.click()
+        price_input = wait.until(EC.element_to_be_clickable
+                                 ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[7]/div/div/input'))).click()
         price = gen_price()
         price_input.send_keys(str(price))
 
         # Inputs the product's description
-        description_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[8]/div/div/textarea')))
-        description_input.click()
+        description_input = wait.until(EC.element_to_be_clickable
+                                       ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[8]/div/div/textarea'))).click()
         description_input.send_keys(row['description'])
 
         # Clicks the save button
-        done_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/form/div[2]/button')))
-        done_btn.click()
+        done_btn = wait.until(EC.element_to_be_clickable
+                              ((By.XPATH, '/html/body/div[1]/div/div/form/div[2]/button'))).click()
 
         # Clicks the close button
-        close_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/form/button')))
-        close_btn.click()
+        close_btn = wait.until(EC.element_to_be_clickable
+                               ((By.XPATH, '/html/body/div[1]/form/button'))).click()
 
         # Close the button with dynamically changing ID
         close_notify_btn_xpath = f'//*[@id="{notification_id}"]'
-        close_notify_btn = wait.until(EC.element_to_be_clickable((By.XPATH, close_notify_btn_xpath)))
-        close_notify_btn.click()
+        close_notify_btn = wait.until(EC.element_to_be_clickable
+                                      ((By.XPATH, close_notify_btn_xpath))).click()
 
         # Increment the ID for the next iteration
         notification_id += 1
 
         # Open the register form again for the next product
-        register_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[2]/div[1]/div/button')))
-        register_btn.click()
-        time.sleep(2)  # Give time for the form to fully load
+        register_btn = wait.until(EC.element_to_be_clickable
+                                  ((By.XPATH, '/html/body/div[1]/div[2]/div[1]/div/button'))).click()
+        time.sleep(2)
 
 # Close the browser
 driver.quit()
