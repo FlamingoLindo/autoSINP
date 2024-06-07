@@ -112,6 +112,8 @@ conf_password_input = wait.until(EC.element_to_be_clickable
                                  ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[10]/div/div/input'))).send_keys(senha)
 
 # Inputs contract file
+print("You will have to alt tab now")
+time.sleep(1.5)
 pyautogui.press('tab')
 pyautogui.press('tab')
 pyautogui.press('enter')
@@ -128,7 +130,9 @@ installment_str = str(installment)
 installment_input.send_keys(installment_str)
 
 # Inputs the installment quantity on the drop-down
+print("You will have to alt tab after the input")
 parcela = input("Type the number of installments (1-12): ")
+time.sleep(1)
 pyautogui.press('tab')
 pyautogui.write(parcela)
 qnt_option = wait.until(EC.element_to_be_clickable

@@ -89,27 +89,34 @@ name = input("Type the client's name: ")
 name_input = wait.until(EC.element_to_be_clickable
                         ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[1]/div/div/input'))).send_keys(name)
 
+# Inputs phone number
 phone = input("Type the client's phone number: ")
 phone_input = wait.until(EC.element_to_be_clickable
                          ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[2]/div[1]/div/input'))).send_keys(phone)
 
+# Inputs CPF
 cpf = gera_e_valida_cpf()
 cpf_input = wait.until(EC.element_to_be_clickable
                        ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[2]/div[2]/div/input'))).send_keys(cpf)
 
+# Inputs email
 email = input("Type the client's email: ")
 email_input = wait.until(EC.element_to_be_clickable
                          ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[3]/div/input'))).send_keys(email)
 
+# Inputs CEP
 cep = input("Type the client's CEP (number only): ")
 cep_input = wait.until(EC.element_to_be_clickable
                        ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[4]/div[1]/div/input'))).send_keys(cep)
 
+# Inputs description
+description = input("Type the description: ")
 description_input = wait.until(EC.element_to_be_clickable
-                               ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[7]/div[2]/textarea'))).send_keys("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+                               ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[7]/div[2]/textarea'))).send_keys(description)
 
 time.sleep(3)
 
+# Inputs adress number
 addreNum = random.randint(1, 9999)
 adressNum_input = wait.until(EC.element_to_be_clickable
                              ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[4]/div[2]/div/input'))).send_keys(addreNum)
@@ -117,6 +124,7 @@ adressNum_input = wait.until(EC.element_to_be_clickable
 next_btn1 = wait.until(EC.element_to_be_clickable
                        ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[2]/button'))).click()
 
+# Choose the vehicle type
 option_type = 1
 type = input("Type the vehicle type ('carros' or 'caminhoes'): ")
 
@@ -125,23 +133,24 @@ if type == "carros":
 
 type_dropdown = wait.until(EC.element_to_be_clickable
                            ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div'))).click()
-print(option_type)
+
 type_select = wait.until(EC.element_to_be_clickable
                          ((By.XPATH, f"//div[@id='react-select-2-option-{option_type}']"))).click()
 
+# Choose the vehicle model
 modelInput = input("Type the vehicle model ('Toyota Corolla LE' or 'Ford Mustang GT')")
 adressNum_input = wait.until(EC.element_to_be_clickable
                              ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[2]/div/input'))).send_keys(modelInput)
 
 time.sleep(3)
 
+# Choose the first option in the list
 first_option = wait.until(EC.element_to_be_clickable
                            ((By.XPATH, '/html/body/div[1]/div/div[1]/form/table/tbody/tr[1]/td[1]/div/div/div'))).click()
 
 next_btn2 = wait.until(EC.element_to_be_clickable
                            ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[4]/button[2]'))).click()
 
-time.sleep(1.2)
 
 time.sleep(2)
 

@@ -14,8 +14,8 @@ from pynput.keyboard import Key, Controller
 
 load_dotenv()
 
-image_path =  r""
-document_path = r""
+image_path =  r"C:\Users\josef\Desktop\AfterLifeDeath\SINP\autoSINP-main\Files\Random\capacitor.webp"
+document_path = r"C:\Users\josef\Desktop\AfterLifeDeath\SINP\autoSINP-main\Files\Random\1.pdf"
 
 # Path to your ChromeDriver
 driver_path = './chromedriver.exe'

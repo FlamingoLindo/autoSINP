@@ -43,12 +43,16 @@ vehicles_btn = wait.until(EC.element_to_be_clickable
 notification_id = 1
 # Click on the delete button
 for _ in range(999999):
+    
+    # Click at the trash can icon
     delete = wait.until(EC.element_to_be_clickable
                         ((By.XPATH, '/html/body/div[1]/div[2]/div[2]/div[2]/div/div[1]/table/tbody/tr[1]/td[7]/div/button[2]'))).click()
 
+    # Click at the confirmation
     delete2 = wait.until(EC.element_to_be_clickable
                          ((By.XPATH, '/html/body/div[1]/form/div/button[2]'))).click()
 
+    # Closes the modal
     close = wait.until(EC.element_to_be_clickable
                        ((By.XPATH, '/html/body/div[1]/form/button'))).click()
 

@@ -133,18 +133,21 @@ vehicle_fuel_dropdown = wait.until(EC.element_to_be_clickable
 fuel_option = wait.until(EC.element_to_be_clickable
                          ((By.XPATH, f"//div[@id='react-select-4-option-{option_fuel}']"))).click()
 
-
+# Vehicle brand
 brand = input("Type the vehicle brande (letters only): ")
 brand_input = wait.until(EC.element_to_be_clickable
                          ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[5]/div/div/input'))).send_keys(brand)
 
+# Vehicle year
 year = input("Type the vehicle year (numbers only):")
 year_input = wait.until(EC.element_to_be_clickable
                         ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[6]/div/div/input'))).send_keys(year)
 
+# Clicks at the send button
 send_btn = wait.until(EC.element_to_be_clickable
                       ((By.XPATH,"/html/body/div[1]/div/div[1]/form/div[2]/button"))).click()
 
 time.sleep(10000)
+
 # Close the browser
 driver.quit()

@@ -45,6 +45,7 @@ vehicles_btn = wait.until(EC.element_to_be_clickable
 register_btn = wait.until(EC.element_to_be_clickable
                           ((By.XPATH, '/html/body/div[1]/div[2]/div[1]/div/button'))).click()
 
+# Chooses the vehicle type
 option_type = 0
 type = input("Type the vehicle type ('Carros' or 'Caminhões leves'): ")
 
@@ -57,6 +58,7 @@ type_dropdown = wait.until(EC.element_to_be_clickable
 type_select = wait.until(EC.element_to_be_clickable
                          ((By.XPATH, f"//div[@id='react-select-2-option-{option_type}']"))).click()
 
+# Chooses the vehicle model
 option_model = 1
 model = input("Type the vehicle model ('ford' or 'toyota'): ")
 
@@ -69,10 +71,12 @@ model_dropdown = wait.until(EC.element_to_be_clickable
 model_select = wait.until(EC.element_to_be_clickable
                           ((By.XPATH, f"//div[@id='react-select-3-listbox']/div[{option_model}]/input"))).click()
 
+# Chooses the vehicle series
 series = input("Type the vehicles series (numbers only): ")
 series_input = wait.until(EC.element_to_be_clickable
                           ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[3]/div/div/input'))).send_keys(series)
 
+# Chooses the vehicle fuel
 option_fuel = 1
 fuel = input("Type the fuel type ('diesel' or 'diesel10'): ")
 
@@ -85,10 +89,12 @@ vehicle_fuel_dropdown = wait.until(EC.element_to_be_clickable
 fuel_option = wait.until(EC.element_to_be_clickable
                          ((By.XPATH, f"//div[@id='react-select-4-option-{option_fuel}']"))).click()
 
+# Chooses the vehicle brand
 brand = input("Type the vehicle brande (letters only): ")
 brand_input = wait.until(EC.element_to_be_clickable
                          ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[5]/div/div/input'))).send_keys(brand)
 
+# Chooses the vehicle year
 year = input("Type the vehicle year (numbers only):")
 year_input = wait.until(EC.element_to_be_clickable
                         ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[6]/div/div/input'))).send_keys(year)

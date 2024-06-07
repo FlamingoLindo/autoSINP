@@ -53,8 +53,8 @@ def gera_e_valida_cpf():
             return cpf
 
 productName = input("Type the product's name: ")
-image_path = r''
-document_path = r''
+image_path = r'C:\Users\josef\Desktop\AfterLifeDeath\SINP\autoSINP-main\Files\Random\Amortecedor.png'
+document_path = r'C:\Users\josef\Desktop\AfterLifeDeath\SINP\autoSINP-main\Files\Random\SINP_-_Master_Web.pdf'
 productPrice = input("Type the product's price (numbers only): ")
 productDescription = input("Type the product's description: ")
 
@@ -109,6 +109,7 @@ time.sleep(1.5)
 pyautogui.write(document_path)
 pyautogui.press('enter')
 
+# Inputs product's name
 name = wait.until(EC.element_to_be_clickable
                   ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[3]/div/div/input'))).send_keys(productName)
 
@@ -128,15 +129,19 @@ type_dropdown = wait.until(EC.element_to_be_clickable
 type_option = wait.until(EC.element_to_be_clickable
                          ((By.XPATH, f"//div[@id='react-select-3-listbox']/div[{option_model}]/input"))).click() 
 
+# Inputs product's price
 price = wait.until(EC.element_to_be_clickable
                    ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[6]/div/div/input'))).send_keys(productPrice)
 
+# Inputs product's decription
 description = wait.until(EC.element_to_be_clickable
                          ((By.XPATH, '/html/body/div[1]/div/div[1]/form/div[1]/div[7]/div/div[2]/textarea'))).send_keys(productDescription)
 
+# Clicks at the send button
 send_btn = wait.until(EC.element_to_be_clickable
                       ((By.XPATH,"/html/body/div[1]/div/div[1]/form/div[2]/button"))).click()
 
 time.sleep(10000)
+
 # Close the browser
 driver.quit()
