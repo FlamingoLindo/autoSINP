@@ -68,48 +68,54 @@ for manufacturer in manufacturers:
                                   ((By.XPATH, '/html/body/div[1]/div[2]/div[1]/div/button'))).click()
 
         # Inputs the vehicle type
-        option_type = random.randint(0, 1)
+        option_type = random.randint(0, 4)
         vehicle_type_dropdown = wait.until(EC.element_to_be_clickable
-                                           ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[1]/div/div/div/div/div[1]/div[2]'))).click()
- 
+                                           ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[1]/div/div/div/div/div[1]/div[2]')
+                                            )).click()
+        
         type_option = wait.until(EC.element_to_be_clickable
-                                 ((By.XPATH, f"//div[@id='react-select-2-option-{option_type}']"))).click()
+                                 ((By.XPATH, f"//div[@id='react-select-2-option-{option_type}']")
+                                  )).click()
 
         # Inputs the vehicle model
-        option_model = random.randint(1, 2)
-        vehicle_model_dropdown = wait.until(EC.element_to_be_clickable
-                                            ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[2]/div/div/div/div/div[1]/div[2]'))).click()
-
-        model_select = wait.until(EC.element_to_be_clickable
-                                  ((By.XPATH, f"//div[@id='react-select-3-listbox']/div[{option_model}]/input"))).click() 
+        vehicle_model = wait.until(EC.element_to_be_clickable
+                                  ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[2]/div/div/input')
+                                   )).send_keys(row['modelo'])
         
         # Inputs vehicle series
         series_input = wait.until(EC.element_to_be_clickable
-                                  ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[3]/div/div/input'))).send_keys(row['serie'])
+                                  ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[3]/div/div/input')
+                                   )).send_keys(row['serie'])
 
         # Inputs the vehicle fuel type
-        option_fuel = random.randint(0, 1)
+        option_fuel = random.randint(0, 2)
         vehicle_fuel_dropdown = wait.until(EC.element_to_be_clickable
-                                           ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[4]/div/div/div/div/div[1]/div[2]'))).click()
+                                           ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[4]/div/div/div/div/div[1]/div[2]')
+                                            )).click()
 
         fuel_option = wait.until(EC.element_to_be_clickable
-                                 ((By.XPATH, f"//div[@id='react-select-4-option-{option_fuel}']"))).click()
+                                 ((By.XPATH, f"//div[@id='react-select-3-option-{option_fuel}']")
+                                  )).click()
 
         # Inputs vehicle brand
         brand_input = wait.until(EC.element_to_be_clickable
-                                 ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[5]/div/div/input'))).send_keys(row['marca'])
+                                 ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[5]/div/div/input')
+                                  )).send_keys(row['marca'])
 
         # Inputs vehicle year
         year_input = wait.until(EC.element_to_be_clickable
-                                ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[6]/div/div/input'))).send_keys(random_year())
+                                ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[6]/div/div/input')
+                                 )).send_keys(random_year())
         
         # Register button
         done_btn = wait.until(EC.element_to_be_clickable
-                              ((By.XPATH, '/html/body/div[1]/div/div/form/div[2]/button'))).click()
+                              ((By.XPATH, '/html/body/div[1]/div/div/form/div[2]/button')
+                               )).click()
 
         # Confirm register button
         confirm_btn = wait.until(EC.element_to_be_clickable
-                                 ((By.XPATH, '/html/body/div[1]/form/button'))).click()
+                                 ((By.XPATH, '/html/body/div[1]/form/button')
+                                  )).click()
 
         pyautogui.hotkey('f5')
         
