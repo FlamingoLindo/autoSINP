@@ -58,6 +58,7 @@ for manufacturer in manufacturers:
     
     df = pd.read_excel(file_path)
 
+    notification_id = 1
     # Iterate over each row in the DataFrame
     for index, row in df.iterrows():
         # Show what index it's currently inputting (Just for debugging)
@@ -68,7 +69,7 @@ for manufacturer in manufacturers:
                                   ((By.XPATH, '/html/body/div[1]/div[2]/div[1]/div/button'))).click()
 
         # Inputs the vehicle type
-        option_type = random.randint(0, 4)
+        option_type = random.randint(1, 2)
         vehicle_type_dropdown = wait.until(EC.element_to_be_clickable
                                            ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[1]/div/div/div/div/div[1]/div[2]')
                                             )).click()
@@ -88,7 +89,7 @@ for manufacturer in manufacturers:
                                    )).send_keys(row['serie'])
 
         # Inputs the vehicle fuel type
-        option_fuel = random.randint(0, 2)
+        option_fuel = random.randint(1, 2)
         vehicle_fuel_dropdown = wait.until(EC.element_to_be_clickable
                                            ((By.XPATH, '/html/body/div[1]/div/div/form/div[1]/div[4]/div/div/div/div/div[1]/div[2]')
                                             )).click()
