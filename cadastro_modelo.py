@@ -21,13 +21,6 @@ def get_user_input(prompt):
 
     return user_input
 
-def down_enter():
-    pyautogui.press('space')
-    pyautogui.press('backspace')
-    time.sleep(1.3)
-    pyautogui.press('down')
-    pyautogui.press('enter')
-
 try:
     # Drive stuff
     driver_path = './chromedriver.exe'
@@ -59,28 +52,21 @@ except Exception as e:
 
 try:
     print(df)
-    
     content = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.louaoe')
                                                             )
                                 ).click() 
 
-    veiculos = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id=":re:"]/li[12]/a')
+    modelos = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id=":re:"]/li[13]/a')
                                                         )
-                            ).click() 
+                             ).click() 
         
     time.sleep(1)
     
     for index, row in df.iterrows():
-        marca = row['MARCA']
-        ano = row['ANO']
-        serie = row['SÉRIE']
-        comb = row['COMBUSTÍVEL']
         modelo = row['MODELO DO VEÍCULO']
-        tipo = row['TIPO DE VEÍCULO']
+        print(modelo)
         
-        print(marca, ano, serie, comb, modelo, tipo)
-        
-        if pd.isna(modelo) or pd.isna(ano) or pd.isna(serie) or pd.isna(comb) or pd.isna(tipo):
+        if pd.isna(modelo):
             print("terminou!!!!!!!!!!!!!!!!!!!")
             break
         
@@ -88,58 +74,19 @@ try:
                                                             )
                                 ).click() 
         
-        brand = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="brand"]')
+        model_input = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="name"]')
                                                             )
-                                ).send_keys(row['MARCA'])  
-        
-        year = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="year"]')
-                                                            )
-                                ).send_keys(row['ANO']) 
-        
-        series = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="series"]')
-                                                            )
-                                ).send_keys(row['SÉRIE'])
-                    
-        status = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="status"]/span[1]/span/span')
-                                                            )
-                                )
-        status.click()
-        pyautogui.press('down')
-        pyautogui.press('enter')
-                    
-        fuel = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="fuel"]')
-                                                            )
-                                )
-        fuel.click()
-        fuel.send_keys(row['COMBUSTÍVEL'])
-        down_enter()
-        
-        model = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="vehicle_model"]')
-                                                            )
-                                )
-        model.click()
-        model.send_keys(row['MODELO DO VEÍCULO'])
-        down_enter()
-        
-        type = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="vehicle_type"]')
-                                                            )
-                                )
-        type.click()
-        type.send_keys(row['TIPO DE VEÍCULO'])
-        down_enter()
-        
-        client = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="client"]')
-                                                            )
-                                )
-        client.click()
-        client.send_keys('Alain Prost')
-        down_enter()
+                                ).send_keys(modelo)
         
         save = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="main-content"]/div[1]/div/div[2]/div[2]/button[2]')
                                                             )
                                 ).click() 
         
         time.sleep(0.6)
+        
+        close = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@id='strapi']/div/div/button")
+                                                            )
+                                ).click()
         
         publish = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="main-content"]/div[1]/div/div[2]/div[2]/button')
                                                             )
@@ -148,7 +95,7 @@ try:
         go_back = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="main-content"]/div[1]/div/div[1]/a')
                                                             )
                                 ).click()
-
+        
 except Exception as e:
     print('There has been an error opening the profile options')
     print(e)

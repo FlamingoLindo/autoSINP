@@ -5,13 +5,13 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-from dotenv import load_dotenv
 import pandas as pd
 import time
 import pyautogui
-load_dotenv()
 
-df = pd.read_excel(r'C:\Users\josef\Desktop\AfterLifeDeath\SINP\autoSINP\Planilha_SINP.xlsx')
+path = r'C:\Users\josef\Desktop\AfterLifeDeath\SINP\autoSINP\Planilha_SINP.xlsx'
+sheet2 = pd.read_excel(path, sheet_name='PRODUTO')
+print(sheet2)
 
 def get_user_input(prompt):
     root = tk.CTk()
@@ -58,29 +58,26 @@ except Exception as e:
     print(e)
 
 try:
-    print(df)
-    
     content = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.louaoe')
                                                             )
                                 ).click() 
 
-    veiculos = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id=":re:"]/li[12]/a')
+    produto = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id=":re:"]/li[6]/a')
                                                         )
-                            ).click() 
+                             ).click() 
         
     time.sleep(1)
     
-    for index, row in df.iterrows():
-        marca = row['MARCA']
-        ano = row['ANO']
-        serie = row['SÉRIE']
-        comb = row['COMBUSTÍVEL']
-        modelo = row['MODELO DO VEÍCULO']
-        tipo = row['TIPO DE VEÍCULO']
+    for index, row in sheet2.iterrows():
+        nome = row['NOME']
+        prod_e = row['PRODUTO É ']
+        valor = row['VALOR']
+        desc = row['DESCRIÇÃO DO PRODUTO']
+        modelo = row['MODELO DE VEÍCULO']
         
-        print(marca, ano, serie, comb, modelo, tipo)
+        print(nome, prod_e, valor, desc, modelo)
         
-        if pd.isna(modelo) or pd.isna(ano) or pd.isna(serie) or pd.isna(comb) or pd.isna(tipo):
+        if pd.isna(nome) or pd.isna(prod_e) or pd.isna(valor) or pd.isna(desc) or pd.isna(modelo):
             print("terminou!!!!!!!!!!!!!!!!!!!")
             break
         
@@ -88,46 +85,43 @@ try:
                                                             )
                                 ).click() 
         
-        brand = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="brand"]')
+        name = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="name"]')
                                                             )
-                                ).send_keys(row['MARCA'])  
+                                ).send_keys(nome)
+
+        product_is = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="productIs"]/span[1]/span/span')
+                                                            )
+                                ).click()
         
-        year = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="year"]')
+        if prod_e == "fabricante/original":
+            pyautogui.press('down')
+            pyautogui.press('enter')
+        else:
+            pyautogui.press('down')
+            pyautogui.press('down')
+            pyautogui.press('enter')
+
+        value = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="value"]')
                                                             )
-                                ).send_keys(row['ANO']) 
-        
-        series = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="series"]')
+                                ).send_keys(valor)    
+
+        description = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="description"]')
                                                             )
-                                ).send_keys(row['SÉRIE'])
-                    
+                                ).send_keys(desc) 
+
         status = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="status"]/span[1]/span/span')
                                                             )
                                 )
         status.click()
         pyautogui.press('down')
         pyautogui.press('enter')
-                    
-        fuel = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="fuel"]')
+
+        model = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="vehicle_models"]')
                                                             )
-                                )
-        fuel.click()
-        fuel.send_keys(row['COMBUSTÍVEL'])
-        down_enter()
+                                ).send_keys(modelo) 
         
-        model = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="vehicle_model"]')
-                                                            )
-                                )
-        model.click()
-        model.send_keys(row['MODELO DO VEÍCULO'])
         down_enter()
-        
-        type = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="vehicle_type"]')
-                                                            )
-                                )
-        type.click()
-        type.send_keys(row['TIPO DE VEÍCULO'])
-        down_enter()
-        
+
         client = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="client"]')
                                                             )
                                 )
@@ -139,16 +133,18 @@ try:
                                                             )
                                 ).click() 
         
-        time.sleep(0.6)
+        close = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@id='strapi']/div/div/button")
+                                                            )
+                                ).click()
         
         publish = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="main-content"]/div[1]/div/div[2]/div[2]/button')
                                                             )
                                 ).click()
         
+        
         go_back = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="main-content"]/div[1]/div/div[1]/a')
                                                             )
                                 ).click()
-
 except Exception as e:
     print('There has been an error opening the profile options')
     print(e)
